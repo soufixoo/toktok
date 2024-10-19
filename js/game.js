@@ -6129,6 +6129,7 @@ function() {
 				!1 === this._created && this.onLoadUpdateCallback && this.onLoadUpdateCallback.call(this.callbackContext, this.game)
 			},
 			pause: function() {
+				showInterstitial();
 				this._created && this.onPausedCallback && this.onPausedCallback.call(this.callbackContext, this.game)
 			},
 			resume: function() {
@@ -25682,6 +25683,7 @@ SceneGame.prototype = {
 		d && this.ShowLevelCompleted()
 	},
 	ShowLevelCompleted: function() {
+		showInterstitial();
 		soundManager.playMusic("music_menu");
 		soundManager.playSound("result_win");
 		soundManager.sounds.ending_stars.stop();
@@ -25720,6 +25722,7 @@ SceneGame.prototype = {
 		integration.showInterstitial()
 	},
 	onPause: function() {
+		showInterstitial();
 		gameRunning && (gamePaused || SceneGame.instance.OnPressedFromGameToPause())
 	},
 	OnPressedFromGameToPause: function() {
@@ -26798,6 +26801,7 @@ ScenePause.prototype = {
 	},
 	OnPressedPauseMenu: function() {
 		onGameOver(GAME_OVER_USER);
+		showInterstitial();
 		soundManager.playSound("button");
 		ScenePause.instance.HideAnimated();
 		SceneOverlay.instance.HideAnimated();
